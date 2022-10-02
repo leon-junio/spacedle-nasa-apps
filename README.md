@@ -1,5 +1,2 @@
-# spacedle-nasa-apps
-<<<<<<< HEAD
-# spacedle-nasa-apps
-=======
->>>>>>> 8f2c074e17b45e1d96175ca49bc869d165ba76d3
+Jogo baseado no tema de idle (wordle, gamedle ou termo) para promover o conhecimento e disseminação de informação sobre o espaço e as novas tecnológias da NASA. Solução desenvolvida em um hacktron de final de semana (NASA SPACE APPS CHALLENGE 2022)
+DESENVOLVIDO POR: LEON JUNIO, EDMAR DE OLIVEIRA, VINICIUS AUGUSTO E PEDRO PAMPOLINI
