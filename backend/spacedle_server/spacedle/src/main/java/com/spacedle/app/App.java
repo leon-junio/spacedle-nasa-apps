@@ -53,6 +53,7 @@ public class App {
         try {
             System.out.println("Starting API SPACEDLE");
             SpacedleService.startHash();
+            SpacedleService.startRank();
             running = true;
             port(porta);
             staticFiles.location("/public");
@@ -62,7 +63,9 @@ public class App {
             get("/api/spacedle/:idle/:type", (request, response) -> SpacedleService.sendData(request, response));
             get("/api/names/:type", (request, response) -> SpacedleService.sendNames(request, response));
             get("/api/pics/:type/:nome", (request, response) -> SpacedleService.sendPicture(request, response));
-            get("/api/continue/:last/:type", (request, response) -> SpacedleService.sendDataContinue(request, response));
+            get("/api/continue/:last/:type",(request, response) -> SpacedleService.sendDataContinue(request, response));
+            get("/api/global/rank/:type", (request, response) -> SpacedleService.getRankUser(request, response));
+            post("/api/rank/:type/:nome", (request, response) -> SpacedleService.addRankUser(request, response));
         } catch (Exception e) {
             System.err.println("Falha inesperada internamente:\n" + e.getMessage());
             e.printStackTrace();
@@ -90,6 +93,7 @@ public class App {
                             today = false;
                         }
                         if (!today && !diaAtual.equals(ultimoDia)) {
+                            SpacedleService.startRank();
                             System.out.println("JOIN renew the DAY");
                             today = true;
                             ultimoDia = diaAtual;
