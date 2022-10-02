@@ -4,18 +4,30 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import com.spacedle.app.App;
 import com.spacedle.app.Utils;
 import com.spacedle.model.Astro;
+import com.spacedle.model.Rank;
+
 import spark.Request;
 import spark.Response;
 
 public class SpacedleService {
     private static HashMap<Integer, int[]> hashZada = new HashMap<>();
     private static ArrayList<File> resp = new ArrayList<>();
+    public static ArrayList<Rank> rankSolar = new ArrayList<>();
+    public static ArrayList<Rank> rankGalatico = new ArrayList<>();
+    public static ArrayList<Rank> rankUniverso = new ArrayList<>();
+
+    public static void startRank() {
+        rankGalatico.clear();
+        rankSolar.clear();
+        rankUniverso.clear();
+    }
 
     public static void startHash() {
         int[] FT = { 1 };
@@ -150,6 +162,53 @@ public class SpacedleService {
             response.header("Content-Type", "Json; charset=utf-8;");
             response.status(200);
             return Utils.stringToJson(astro);
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.status(203);
+            return null;
+        }
+    }
+
+    public static Object getRankUser(Request request, Response response) {
+        try {
+            int type = Integer.parseInt(request.params(":type"));
+            String json = "";
+            if (type == 0) {
+                json = Utils.stringToJson(rankSolar);
+            } else if (type == 1) {
+                json = Utils.stringToJson(rankGalatico);
+            } else if (type == 2) {
+                json = Utils.stringToJson(rankUniverso);
+            }
+            response.header("Content-Type", "Json; charset=utf-8;");
+            response.status(200);
+            return json;
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.status(203);
+            return null;
+        }
+    }
+
+    public static Object addRankUser(Request request, Response response) {
+        try {
+            int type = Integer.parseInt(request.params(":type"));
+            String nome = java.net.URLDecoder.decode(request.params(":nome"), StandardCharsets.UTF_8.name());
+            Rank ra = new Rank();
+            ra.setNome(nome);
+            if (type == 0) {
+                ra.setLugar(rankSolar.size() + 1);
+                rankSolar.add(ra);
+            } else if (type == 1) {
+                ra.setLugar(rankGalatico.size() + 1);
+                rankGalatico.add(ra);
+            } else if (type == 2) {
+                ra.setLugar(rankUniverso.size() + 1);
+                rankUniverso.add(ra);
+            }
+            response.header("Content-Type", "Json; charset=utf-8;");
+            response.status(200);
+            return response.status();
         } catch (Exception e) {
             e.printStackTrace();
             response.status(203);

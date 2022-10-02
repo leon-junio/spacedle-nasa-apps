@@ -13,6 +13,8 @@ import org.apache.commons.io.FileUtils;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.spacedle.model.Astro;
+import com.spacedle.model.Rank;
+
 import javax.imageio.ImageIO;
 
 public class Utils {
@@ -78,6 +80,12 @@ public class Utils {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         // gson to json using object
         return gson.toJson(names);
+    }
+
+    public static String stringToJson(ArrayList<Rank> list) {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        // gson to json using object
+        return gson.toJson(list);
     }
 
     private static SimpleDateFormat sfd = new SimpleDateFormat("dd-MM-yyyy");
