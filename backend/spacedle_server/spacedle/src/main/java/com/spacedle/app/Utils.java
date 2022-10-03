@@ -18,8 +18,12 @@ import com.spacedle.model.Rank;
 import javax.imageio.ImageIO;
 
 public class Utils {
-    public static boolean cropImage(File img, String type) throws IOException {
-        for (File file : new ArrayList<>(Arrays.asList(new File(type).listFiles()))) {
+    public static boolean cropImage(File img, String type) throws IOException, Exception {
+        File dir = new File(type);
+        if (!dir.isDirectory()) {
+            dir.mkdirs();
+        }
+        for (File file : new ArrayList<>(Arrays.asList(dir.listFiles()))) {
             file.delete();
         }
         boolean status = false;

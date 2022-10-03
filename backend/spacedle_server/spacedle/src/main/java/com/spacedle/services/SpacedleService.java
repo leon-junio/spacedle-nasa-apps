@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import com.spacedle.app.App;
+import com.spacedle.app.Conf;
 import com.spacedle.app.Utils;
 import com.spacedle.model.Astro;
 import com.spacedle.model.Rank;
@@ -43,10 +44,11 @@ public class SpacedleService {
     }
 
     public static Object sendNames(Request request, Response response) {
+        Conf c = new Conf();
         try {
             int type = Integer.parseInt(request.params(":type"));
             ArrayList<File> files = new ArrayList<>(
-                    Arrays.asList(new File("resources/" + App.getType(type) + "/desc").listFiles()));
+                    Arrays.asList(new File("classes/resources/" + App.getType(type) + "/desc").listFiles()));
             if (files.isEmpty()) {
                 throw new Exception("Lista esta vazia para esse parametro");
             }
@@ -71,10 +73,11 @@ public class SpacedleService {
 
     public static Object sendPicture(Request request, Response response) {
         try {
+            Conf c = new Conf();
             int type = Integer.parseInt(request.params(":type"));
             String nome = request.params(":nome");
             ArrayList<File> files = new ArrayList<>(
-                    Arrays.asList(new File("resources/" + App.getType(type) + "/pics").listFiles()));
+                    Arrays.asList(new File("classes/resources/" + App.getType(type) + "/pics").listFiles()));
             File imagem = null;
             for (File fl : files) {
                 if (fl.getName().substring(0, fl.getName().indexOf('.')).equals(nome)) {
