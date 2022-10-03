@@ -1,1 +1,0 @@
-web: java -jar target/spacedle-1.0.jar
