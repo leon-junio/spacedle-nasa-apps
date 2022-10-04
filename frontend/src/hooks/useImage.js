@@ -5,7 +5,7 @@ const fetcher = (...args) => fetch(...args).then((res) => res.json());
 const useImage = (id, type) => {
   const [ID, setID] = useState(id ?? 0);
   const { data, error } = useSWR(
-    `https://spacedle.herokuapp.com/api/continue/${ID}/${type}`,
+    `http://spacedle-env.eba-mcyhkitc.sa-east-1.elasticbeanstalk.com:6789/api/continue/${ID}/${type}`,
     fetcher,
     {
       revalidateOnFocus: false,
