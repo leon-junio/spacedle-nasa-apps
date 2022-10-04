@@ -52,7 +52,7 @@ const Home = () => {
     switch (tab) {
       case 0:
         setTutorial(false);
-        setSolar(false);
+        setSolar(true);
         setGalatico(false);
         setUniversal(false);
         break;
@@ -110,7 +110,7 @@ const Home = () => {
             index={tab}
             onChangeIndex={changeTabSwipe}
           >
-            <TabPanel value={tab} index={0}>
+            <TabPanel value={tab+1} index={0}>
               <Tutorial setTab={setTab} />
             </TabPanel>
             <TabPanel value={tab} index={1}>
