@@ -3,7 +3,7 @@ const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 const useImage = (type) => {
   const { data, error } = useSWR(
-    `http://spacedle-env.eba-mcyhkitc.sa-east-1.elasticbeanstalk.com:6789/api/names/${type}`,
+    `https://spacedle.herokuapp.com/api/names/${type}`,
     fetcher,
     {
       revalidateOnFocus: false,
