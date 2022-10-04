@@ -23,7 +23,7 @@ import spark.Spark;
  * @NASE SPACE APPS
  */
 public class App {
-    public static final int porta = 6789;
+    public static final int porta = 80;
     private static boolean running = false;
     public static final int SOLAR = 0;
     public static final int GALATICO = 1;
