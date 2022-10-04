@@ -48,7 +48,7 @@ public class SpacedleService {
         try {
             int type = Integer.parseInt(request.params(":type"));
             ArrayList<File> files = new ArrayList<>(
-                    Arrays.asList(new File("extras/resources/" + App.getType(type) + "/desc").listFiles()));
+                    Arrays.asList(new File("target/extras/resources/" + App.getType(type) + "/desc").listFiles()));
             if (files.isEmpty()) {
                 throw new Exception("Lista esta vazia para esse parametro");
             }
@@ -77,7 +77,7 @@ public class SpacedleService {
             int type = Integer.parseInt(request.params(":type"));
             String nome = request.params(":nome");
             ArrayList<File> files = new ArrayList<>(
-                    Arrays.asList(new File("extras/resources/" + App.getType(type) + "/pics").listFiles()));
+                    Arrays.asList(new File("target/extras/resources/" + App.getType(type) + "/pics").listFiles()));
             File imagem = null;
             for (File fl : files) {
                 if (fl.getName().substring(0, fl.getName().indexOf('.')).equals(nome)) {

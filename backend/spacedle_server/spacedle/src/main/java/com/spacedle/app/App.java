@@ -122,8 +122,8 @@ public class App {
 
     public static boolean setFilesDir(String dir) {
         try {
-            files = new ArrayList<>(Arrays.asList(new File("extras/resources/" + dir + "/pics/").listFiles()));
-            infos = new ArrayList<>(Arrays.asList(new File("extras/resources/" + dir + "/desc/").listFiles()));
+            files = new ArrayList<>(Arrays.asList(new File("target/extras/resources/" + dir + "/pics/").listFiles()));
+            infos = new ArrayList<>(Arrays.asList(new File("target/extras/resources/" + dir + "/desc/").listFiles()));
             return true;
         } catch (Exception e) {
             return false;
@@ -135,7 +135,7 @@ public class App {
         try {
             try {
                 if (files.isEmpty()) {
-                    files = new ArrayList<>(Arrays.asList(new File("extras/resources/" + getType(op)).listFiles()));
+                    files = new ArrayList<>(Arrays.asList(new File("target/extras/resources/" + getType(op)).listFiles()));
                 }
             } catch (NullPointerException nu) {
                 System.out.println("Pasta vazia! Invalidando slicer!");
