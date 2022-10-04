@@ -51,11 +51,18 @@ public class App {
 
     public static void main(String[] args) {
         try {
+            ProcessBuilder process = new ProcessBuilder();
             System.out.println("Starting API SPACEDLE");
             SpacedleService.startHash();
             SpacedleService.startRank();
             running = true;
-            port(porta);
+            int port = 0;
+            if (process.environment().get("PORT") != null) {
+                port = Integer.parseInt(process.environment().get("PORT"));
+            } else {
+                port = 6789;
+            }
+            port(port);
             staticFiles.location("/public");
             App.apply();
             System.out.println(porta + " aberta para conexões");
